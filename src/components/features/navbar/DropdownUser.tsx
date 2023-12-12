@@ -1,5 +1,5 @@
 import NextUiDropdown from '@/components/ui/dropdown'
-import { signOut } from '@/utils/helpers/AuthHelper'
+import useAuth from '@/hooks/auth/useAuth'
 import {
   Avatar,
   DropdownItem,
@@ -19,6 +19,7 @@ export default function DropdownUser() {
   const { t } = useTranslation(['common'])
   // const token = getCookie(ACCESS_TOKEN)
   const [isOpen, setIsOpen] = useState(false)
+  const { logOut } = useAuth()
   return (
     <NextUiDropdown
       isOpen={isOpen}
@@ -92,7 +93,9 @@ export default function DropdownUser() {
           key='logout'
           color='danger'
           endContent={<LogOutIcon className='h-4 w-4' />}
-          onClick={() => signOut()}
+          onClick={() => {
+            logOut()
+          }}
         >
           {capitalize(
             t('log-out', {
