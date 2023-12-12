@@ -67,7 +67,7 @@ export default function DropdownUser() {
             <Image
               src={
                 locale === 'vi'
-                  ? '/assets/flags/vn.png'
+                  ? '/assets/flags/vi.png'
                   : '/assets/flags/en.png'
               }
               alt={cn('logo-', locale)}
