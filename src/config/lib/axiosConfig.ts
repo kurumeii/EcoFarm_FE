@@ -50,19 +50,20 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     if (axios.isAxiosError(error)) {
+      debugger;
       switch (error.response?.status) {
         case ERROR_CODES.UNAUTHORIZED:
           ToastHelper.error(
             i18n?.t('access-expired.title', { ns: 'error' }) ?? 'Error',
             i18n?.t('access-expired.description', { ns: 'error' }) ??
-              'Access expired',
+            'Access expired',
           )
           break
         case ERROR_CODES.FORBIDDEN:
           ToastHelper.error(
-            i18n?.t('access-denied.title', { ns: 'error' }) ?? 'Error',
-            i18n?.t('access-denied.description', { ns: 'error' }) ??
-              'Access denied',
+            i18n!.t('access-denied.title', { ns: 'error' }) ?? 'Error',
+            i18n!.t('access-denied.description', { ns: 'error' }) ??
+            'Access denied',
           )
           break
         case ERROR_CODES.BAD_REQUEST:
@@ -71,8 +72,8 @@ axiosClient.interceptors.response.use(
             i18n?.t('default-error.title', { ns: 'error' }) ?? 'Error',
             // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
             error.response.data.errors ??
-              i18n?.t('default-error.description', { ns: 'error' }) ??
-              'Something went wrong',
+            i18n?.t('default-error.description', { ns: 'error' }) ??
+            'Something went wrong',
           )
           break
       }

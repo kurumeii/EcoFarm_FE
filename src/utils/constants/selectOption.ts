@@ -21,3 +21,19 @@ export const SELECT_ORDER_STATUS = [
   { value: ORDER_STATUS.Shipping, label: 'shipping' },
   { value: ORDER_STATUS.WaitingSellerConfirm, label: 'waiting-seller-confirm' },
 ]
+
+export const SELECT_LIMIT = [
+  {value: 10, label: '10'},
+  {value: 20, label: '20'},
+  {value: 30, label: '30'},
+  {value: 50, label: '50'},
+]
+
+export const SELECT_RATING = [
+  {value: 0, label: 'Không đánh giá'}, //XXX
+  {value: 1, label: '1'},
+  {value: 2, label: '2'},
+  {value: 3, label: '3'},
+  {value: 4, label: '4'},
+  {value: 5, label: '5'},
+]

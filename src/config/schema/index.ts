@@ -116,8 +116,43 @@ export const createForgotPasswordSchema = <T extends TFunction>(t: T) => {
   })
 }
 
+// Package
+export const createNewPackageSchema = () => {
+  return z.object({
+    code: z.string(),
+    name: z.string(),
+    description: z.string(),
+    estimatedStartTime: z.date().nullable(),
+    estimatedEndTime: z.date().nullable(),
+    price: z.number(),
+    quantity: z.number(),
+    serviceType: z.number(),
+    isAutoCloseRegister: z.boolean(),
+  })
+
+}
+
+// Package review
+export const createNewPackageReviewSchema = <T extends TFunction>(t: T) => {
+  return z.object({
+    packageId: z.string(),
+    rating: z.number()
+
+      .min(1, t('error.rating_out_of_range', {
+        ns: 'farm-package-review',
+        fromRating: 1,
+        toRating: 5,
+      }))
+      .max(5),
+    content: z.string(),
+  })
+}
+
 export type LoginSchemaType = z.infer<ReturnType<typeof createLoginSchema>>
 export type SignUpSchemaType = z.infer<ReturnType<typeof createSignUpSchema>>
 export type ForgotPasswordSchemaType = z.infer<
   ReturnType<typeof createForgotPasswordSchema>
 >
+
+export type CreatePackageSchemaType = z.infer<ReturnType<typeof createNewPackageSchema>>
+export type CreatePackageReviewSchemaType = z.infer<ReturnType<typeof createNewPackageReviewSchema>>

@@ -16,8 +16,8 @@ export type PackageModel = {
   createBy: string
   seller: EnterpriseModel
   description: string
-  estimateStartTime: Date
-  estimateEndTime: Date
+  estimatedStartTime: Date
+  estimatedEndTime: Date
   closeRegisterTime: Date
   startTime: Date
   endTime: Date
@@ -25,7 +25,7 @@ export type PackageModel = {
   currency: keyof typeof CURRENCY_TYPE
   currencyName: keyof typeof CURRENCY_TYPE
   quantityTotal: number
-  quantityRegister: number
+  quantityRegistered: number
   quantityRemain: number
   rejectReason?: string
   servicePackageApprovalStatus: keyof typeof SERVICE_PACKAGE_APPROVAL_STATUS
@@ -34,13 +34,23 @@ export type PackageModel = {
   registeredUsers?: Array<UserModel>
   numbersOfRating?: number
   averageRating?: number
+  isRegisteredByCurrentUser?: boolean
+  enterprise?: EnterpriseModel
 }
 
+export type ResponsePackages = ResponseModel<Array<PackageModel>>
 export type ResponsePackage = ResponseModel<PackageModel>
-export type QueryPackage = QueryRequest<{
+
+export type QueryPackages = QueryRequest<{
+  keyword?: string
   enterpriseId?: string
   priceFrom?: number
   priceTo?: number
   isStart?: boolean
   isEnded?: boolean
 }>
+
+export type QuerySinglePackage = {
+  id?: string
+  code?: string
+}
